@@ -32,6 +32,8 @@ We'll use **out of bound** bug to exploit. The program calls ``` conv ``` withou
 ```
 The plan is to call ``` hard ``` with a right ```passcode```. It gives us the shell by call ``` execve(/bin/sh, NULL, NULL) ```.
 ``` passcode ``` is the random value from ``` /dev/random ```. So, we have to leak it.
+![image](https://github.com/user-attachments/assets/3d8e6cd7-a21c-4747-8793-620c33d2db7f)
+
 The offset between``` conv ``` address and the beginning of ``` username ``` is 14. Therefore, we can use index ``` 15 ``` to reach here. 
 We''ll use ``` puts ``` function to leak the ```passcode``` then input it into the program. 
 Here is my solution: [solution.py](https://github.com/faviconico1910/CTFs/blob/master/0xl4ugh/wanna_play_a_game/chall.py)
